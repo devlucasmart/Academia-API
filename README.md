@@ -1,7 +1,7 @@
 # Sistema de Gerenciamento de Avaliação Física
 
 ![Java](https://img.shields.io/badge/Java-11-orange?style=for-the-badge&logo=java)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.5.0-brightgreen?style=for-the-badge&logo=spring)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7.3-brightgreen?style=for-the-badge&logo=spring)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?style=for-the-badge&logo=postgresql)
 
 ## Descrição
@@ -9,7 +9,7 @@ Este é um sistema de gerenciamento de avaliação física desenvolvido com Spri
 
 ## Tecnologias Utilizadas
 - **Java 11**: Linguagem de programação principal do projeto.
-- **Spring Boot 2.5.0**: Framework utilizado para o desenvolvimento rápido de aplicativos Java.
+- **Spring Boot 2.7.3**: Framework utilizado para o desenvolvimento rápido de aplicativos Java.
 - **PostgreSQL 13**: Sistema de gerenciamento de banco de dados relacional.
 
 ## Funcionalidades
