@@ -1,8 +1,8 @@
 version: '3'
 services:
   postgres:
-    image: postgres:latest
-    container_name: postgres-db
+    image: bitnami/postgresql:16.1.0-debian-11-r19
+    container_name: postgres-alunoDB
     environment:
       POSTGRES_USER: sa
       POSTGRES_PASSWORD: sa
