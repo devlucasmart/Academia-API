@@ -10,7 +10,7 @@ Este é um sistema de gerenciamento de avaliação física desenvolvido com Spri
 ## Tecnologias Utilizadas
 - **Java 11**: Linguagem de programação principal do projeto.
 - **Spring Boot 2.7.3**: Framework utilizado para o desenvolvimento rápido de aplicativos Java.
-- **PostgreSQL 13**: Sistema de gerenciamento de banco de dados relacional.
+- **PostgreSQL 16**: Sistema de gerenciamento de banco de dados relacional.
 
 ## Funcionalidades
 - Cadastro de Alunos: Adicione informações dos alunos, como nome, idade, e contato.
