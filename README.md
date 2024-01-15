@@ -8,9 +8,14 @@
 Este é um sistema de gerenciamento de avaliação física desenvolvido com Spring Boot e PostgreSQL. Ele permite o cadastro de alunos e a gestão de avaliações físicas associadas a esses alunos.
 
 ## Tecnologias Utilizadas
+- **IDE Intellij**
 - **Java 11**: Linguagem de programação principal do projeto.
+- **Maven**
+- **Spring Web**
+- **Spring Data JPA**
 - **Spring Boot 2.7.3**: Framework utilizado para o desenvolvimento rápido de aplicativos Java.
 - **PostgreSQL 16**: Sistema de gerenciamento de banco de dados relacional.
+- **Hibernate Validator**
 
 ## Funcionalidades
 - Cadastro de Alunos: Adicione informações dos alunos, como nome, idade, e contato.
