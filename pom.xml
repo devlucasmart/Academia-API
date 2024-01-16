@@ -17,6 +17,10 @@
 		<java.version>11</java.version>
 		<mavenPlugin.version>3.5.1</mavenPlugin.version>
 		<lombok.version>1.18.24</lombok.version>
+		<mapstruct.version>1.5.3.Final</mapstruct.version>
+		<puppycrawl.checkstyle.version>8.18</puppycrawl.checkstyle.version>
+		<maven.checkstyle.version>3.0.0</maven.checkstyle.version>
+		<apache.maven.pmd.version>3.11.0</apache.maven.pmd.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -58,6 +62,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.3.Final</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -84,8 +93,65 @@
 							<artifactId>lombok</artifactId>
 							<version>${lombok.version}</version>
 						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
 					</annotationProcessorPaths>
 				</configuration>
+			</plugin>
+			<!-- CheckStyle -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven.checkstyle.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${puppycrawl.checkstyle.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>verify-style</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<consoleOutput>true</consoleOutput>
+							<violationSeverity>warning</violationSeverity>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<configLocation>src/main/resources/checkstyle/google_checks.xml</configLocation>
+				</configuration>
+			</plugin>
+
+			<!--PMD -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${apache.maven.pmd.version}</version>
+				<configuration>
+					<printFailingErrors>true</printFailingErrors>
+					<excludeRoots>
+						<excludeRoot>target/generated-sources</excludeRoot>
+					</excludeRoots>
+				</configuration>
+				<executions>
+					<execution>
+						<id>verify-pmd</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

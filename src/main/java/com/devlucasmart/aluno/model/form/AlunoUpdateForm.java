@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AlunoUpdateForm {
+    private Long id;
     private String nome;
     private String bairro;
     private LocalDate dataDeNascimento;

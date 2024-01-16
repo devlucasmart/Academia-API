@@ -12,9 +12,9 @@ public interface IAlunoService {
 
     Aluno get(Long id);
 
-    List<Aluno> getAll();
+    List<AlunoForm> getAll();
 
-    Aluno update(Long id, AlunoUpdateForm formUpdate);
+    AlunoUpdateForm update(Long id, AlunoUpdateForm formUpdate);
 
     void delete(Long id);
 }
