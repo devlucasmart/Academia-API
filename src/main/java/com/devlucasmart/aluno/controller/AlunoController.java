@@ -1,10 +1,12 @@
 package com.devlucasmart.aluno.controller;
 
-import com.devlucasmart.aluno.model.Aluno;
-import com.devlucasmart.aluno.model.form.AlunoForm;
-import com.devlucasmart.aluno.model.form.AlunoUpdateForm;
+import com.devlucasmart.aluno.dto.Aluno.AlunoAvaliacoesResponse;
+import com.devlucasmart.aluno.dto.Aluno.AlunoRequest;
+import com.devlucasmart.aluno.dto.Aluno.AlunoResponse;
+import com.devlucasmart.aluno.dto.Aluno.AlunoUpdateRequest;
 import com.devlucasmart.aluno.service.impl.AlunoServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,27 +26,34 @@ public class AlunoController {
     private final AlunoServiceImpl service;
 
     @GetMapping
-    public List<AlunoForm> getAll() {
+    public List<AlunoResponse> getAll() {
         return service.getAll();
     }
 
-    @GetMapping("/id")
-    public Aluno getById(@PathVariable Long id) {
-        return service.get(id);
+    @GetMapping("{id}")
+    public ResponseEntity<AlunoResponse> getById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.get(id));
+    }
+
+    @GetMapping("/avaliacoes/{id}")
+    public List<AlunoAvaliacoesResponse> getAllAvaliacaoFisicaId(@PathVariable Long id) {
+        return service.getAllAvaliacaoFisica(id);
     }
 
     @PostMapping
-    public Aluno create(@RequestBody AlunoForm form) {
-        return service.create(form);
+    public AlunoResponse create(@Valid @RequestBody AlunoRequest request) {
+        return service.create(request);
     }
 
-    @PutMapping("/id")
-    public AlunoUpdateForm update(@PathVariable Long id, @RequestBody AlunoUpdateForm form) {
-        return service.update(id, form);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody AlunoUpdateRequest request) {
+        service.update(id, request);
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
-    public void delete(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

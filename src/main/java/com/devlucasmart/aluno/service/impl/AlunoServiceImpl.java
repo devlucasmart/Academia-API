@@ -1,14 +1,18 @@
 package com.devlucasmart.aluno.service.impl;
 
+import com.devlucasmart.aluno.dto.Aluno.AlunoAvaliacoesResponse;
+import com.devlucasmart.aluno.dto.Aluno.AlunoRequest;
+import com.devlucasmart.aluno.dto.Aluno.AlunoResponse;
+import com.devlucasmart.aluno.dto.Aluno.AlunoUpdateRequest;
+import com.devlucasmart.aluno.dto.Aluno.AlunoUpdateResponse;
+import com.devlucasmart.aluno.mappers.AlunoAvaliacoesMapper;
 import com.devlucasmart.aluno.mappers.AlunoMapper;
 import com.devlucasmart.aluno.mappers.AlunoUpdateMapper;
-import com.devlucasmart.aluno.model.Aluno;
-import com.devlucasmart.aluno.model.form.AlunoForm;
-import com.devlucasmart.aluno.model.form.AlunoUpdateForm;
 import com.devlucasmart.aluno.repository.AlunoRepository;
 import com.devlucasmart.aluno.service.IAlunoService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,37 +21,47 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AlunoServiceImpl implements IAlunoService {
-
     private final AlunoRepository repository;
-
     private AlunoMapper AlunoMapper = Mappers.getMapper(AlunoMapper.class);
+    private AlunoAvaliacoesMapper AlunoAvaliacoesMapper = Mappers.getMapper(AlunoAvaliacoesMapper.class);
     private AlunoUpdateMapper AlunoUpdateMapper = Mappers.getMapper(AlunoUpdateMapper.class);
 
     @Override
-    public Aluno create(AlunoForm form) {
-        var aluno = AlunoMapper.toDomain(form);
-        return repository.save(aluno);
+    public AlunoResponse create(AlunoRequest alunoRequest) {
+        var alunoResponse = AlunoMapper.toResponse(alunoRequest);
+        var aluno = AlunoMapper.toDomain(alunoResponse);
+        repository.save(aluno);
+        return alunoResponse;
     }
 
     @Override
-    public Aluno get(Long id) {
-        return repository.getById(id);
+    public AlunoResponse get(Long id) {
+        var aluno = repository.getById(id);
+        var alunoResponse = AlunoMapper.toDtoResponse(aluno);
+        return alunoResponse;
     }
 
     @Override
-    public List<AlunoForm> getAll() {
+    public List<AlunoResponse> getAll() {
         var alunos = repository.findAll();
-        var alunosList = new ArrayList<AlunoForm>();
-        alunos.forEach(aluno -> alunosList.add(AlunoMapper.toDto(aluno)));
+        var alunosList = new ArrayList<AlunoResponse>();
+        alunos.forEach(aluno -> alunosList.add(AlunoMapper.toDtoResponse(aluno)));
         return alunosList;
     }
 
     @Override
-    public AlunoUpdateForm update(Long id, AlunoUpdateForm formUpdate) {
-        formUpdate.setId(id);
-        var aluno = AlunoUpdateMapper.toDomain(formUpdate);
-        aluno = repository.save(aluno);
-        return AlunoUpdateMapper.toDto(aluno);
+    public List<AlunoAvaliacoesResponse> getAllAvaliacaoFisica(Long id) {
+        var aluno = repository.getById(id);
+        var alunoResponse = AlunoAvaliacoesMapper.toDto(aluno);
+        return List.of(alunoResponse);
+    }
+
+    @Override
+    public AlunoUpdateResponse update(Long id, AlunoUpdateRequest request) {
+        var alunoExistente = repository.findById(id).orElseThrow(() -> new RuntimeException("Aluno não existe"));
+        BeanUtils.copyProperties(request, alunoExistente);
+        var alunoUpdate = repository.save(alunoExistente);
+        return AlunoUpdateMapper.toResponse(alunoUpdate);
     }
 
     @Override

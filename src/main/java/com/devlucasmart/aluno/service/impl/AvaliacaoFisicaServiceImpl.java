@@ -1,12 +1,12 @@
 package com.devlucasmart.aluno.service.impl;
 
+import com.devlucasmart.aluno.dto.AvaliacaoFisica.AvaliacaoFisicaRequest;
+import com.devlucasmart.aluno.dto.AvaliacaoFisica.AvaliacaoFisicaUpdateRequest;
 import com.devlucasmart.aluno.mappers.AlunoMapper;
 import com.devlucasmart.aluno.mappers.AlunoUpdateMapper;
 import com.devlucasmart.aluno.mappers.AvaliacaoFisicaMapper;
 import com.devlucasmart.aluno.mappers.AvaliacaoFisicaUpdateMapper;
 import com.devlucasmart.aluno.model.AvaliacaoFisica;
-import com.devlucasmart.aluno.model.form.AvaliacaoFisicaForm;
-import com.devlucasmart.aluno.model.form.AvaliacaoFisicaUpdateForm;
 import com.devlucasmart.aluno.repository.AlunoRepository;
 import com.devlucasmart.aluno.repository.AvaliacaoFisicaRepository;
 import com.devlucasmart.aluno.service.IAvaliacaoFisicaService;
@@ -21,7 +21,6 @@ import java.util.List;
 public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     private final AvaliacaoFisicaRepository repository;
     private final AlunoRepository alunoRepository;
-
     private AvaliacaoFisicaMapper AvaliacaoFisicaMapper = Mappers.getMapper(AvaliacaoFisicaMapper.class);
     private AvaliacaoFisicaUpdateMapper AvaliacaoFisicaUpdateMapper = Mappers.getMapper(AvaliacaoFisicaUpdateMapper.class);
 
@@ -29,8 +28,10 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     private AlunoUpdateMapper AlunoUpdateMapper = Mappers.getMapper(AlunoUpdateMapper.class);
 
     @Override
-    public AvaliacaoFisica create(AvaliacaoFisicaForm form) {
+    public AvaliacaoFisica create(AvaliacaoFisicaRequest form) {
         var avaliacao = AvaliacaoFisicaMapper.toDomain(form);
+        var aluno = alunoRepository.getById(form.getAlunoId());
+        avaliacao.setAluno(aluno);
         return repository.save(avaliacao);
     }
 
@@ -41,11 +42,11 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
 
     @Override
     public List<AvaliacaoFisica> getAll() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
-    public AvaliacaoFisica update(Long id, AvaliacaoFisicaUpdateForm formUpdate) {
+    public AvaliacaoFisica update(Long id, AvaliacaoFisicaUpdateRequest formUpdate) {
         return null;
     }
 

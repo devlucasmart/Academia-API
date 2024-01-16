@@ -1,8 +1,8 @@
 package com.devlucasmart.aluno.service.impl;
 
+import com.devlucasmart.aluno.dto.Matricula.MatriculaRequest;
 import com.devlucasmart.aluno.mappers.MatriculaMapper;
 import com.devlucasmart.aluno.model.Matricula;
-import com.devlucasmart.aluno.model.form.MatriculaForm;
 import com.devlucasmart.aluno.repository.AlunoRepository;
 import com.devlucasmart.aluno.repository.MatriculaRepository;
 import com.devlucasmart.aluno.service.IMatriculaService;
@@ -21,9 +21,9 @@ public class MatriculaServiceImpl implements IMatriculaService {
     private MatriculaMapper MatriculaMapper = Mappers.getMapper(MatriculaMapper.class);
 
     @Override
-    public Matricula create(MatriculaForm form) {
-        var aluno = alunoRepository.getById(form.getAlunoId());
-        var matricula = MatriculaMapper.toDomain(form);
+    public Matricula create(MatriculaRequest request) {
+        var aluno = alunoRepository.getById(request.getAlunoId());
+        var matricula = MatriculaMapper.toDomain(request);
         matricula.setAluno(aluno);
 
         return repository.save(matricula);

@@ -1,8 +1,8 @@
 package com.devlucasmart.aluno.controller;
 
+import com.devlucasmart.aluno.dto.AvaliacaoFisica.AvaliacaoFisicaRequest;
+import com.devlucasmart.aluno.dto.AvaliacaoFisica.AvaliacaoFisicaUpdateRequest;
 import com.devlucasmart.aluno.model.AvaliacaoFisica;
-import com.devlucasmart.aluno.model.form.AvaliacaoFisicaForm;
-import com.devlucasmart.aluno.model.form.AvaliacaoFisicaUpdateForm;
 import com.devlucasmart.aluno.service.impl.AvaliacaoFisicaServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,30 +20,30 @@ import java.util.List;
 @RequestMapping("/avaliacoes")
 @RequiredArgsConstructor
 public class AvaliacaoFisicaController {
-     private final AvaliacaoFisicaServiceImpl service;
+    private final AvaliacaoFisicaServiceImpl service;
 
-     @GetMapping
-     public List<AvaliacaoFisica> getAll() {
-          return service.getAll();
-     }
+    @GetMapping
+    public List<AvaliacaoFisica> getAll() {
+        return service.getAll();
+    }
 
-     @GetMapping("id")
-     public AvaliacaoFisica getById(@PathVariable Long id) {
-          return service.get(id);
-     }
+    @GetMapping("/id")
+    public AvaliacaoFisica getById(@PathVariable Long id) {
+        return service.get(id);
+    }
 
-     @PostMapping
-     public AvaliacaoFisica  create(@RequestBody AvaliacaoFisicaForm form) {
-          return service.create(form);
-     }
+    @PostMapping
+    public AvaliacaoFisica create(@RequestBody AvaliacaoFisicaRequest request) {
+        return service.create(request);
+    }
 
-     @PutMapping("id")
-     public AvaliacaoFisica update(@PathVariable Long id, @RequestBody AvaliacaoFisicaUpdateForm form) {
-          return service.update(id, form);
-     }
+    @PutMapping("/id")
+    public AvaliacaoFisica update(@PathVariable Long id, @RequestBody AvaliacaoFisicaUpdateRequest request) {
+        return service.update(id, request);
+    }
 
-     @DeleteMapping
-     public void delete(@PathVariable Long id) {
-          service.delete(id);
-     }
+    @DeleteMapping("/id")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
 }

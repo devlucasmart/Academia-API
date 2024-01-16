@@ -1,7 +1,7 @@
 package com.devlucasmart.aluno.controller;
 
+import com.devlucasmart.aluno.dto.Matricula.MatriculaRequest;
 import com.devlucasmart.aluno.model.Matricula;
-import com.devlucasmart.aluno.model.form.MatriculaForm;
 import com.devlucasmart.aluno.service.impl.MatriculaServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,12 +32,12 @@ public class MatriculaController {
     }
 
     @PostMapping
-    public Matricula create(@RequestBody MatriculaForm form) {
-        return service.create(form);
+    public Matricula create(@RequestBody MatriculaRequest request) {
+        return service.create(request);
     }
 
     @DeleteMapping
-    public void update(@PathVariable Long id){
+    public void update(@PathVariable Long id) {
         service.delete(id);
     }
 }

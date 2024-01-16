@@ -1,20 +1,25 @@
 package com.devlucasmart.aluno.service;
 
-import com.devlucasmart.aluno.model.Aluno;
-import com.devlucasmart.aluno.model.form.AlunoForm;
-import com.devlucasmart.aluno.model.form.AlunoUpdateForm;
+import com.devlucasmart.aluno.dto.Aluno.AlunoAvaliacoesResponse;
+import com.devlucasmart.aluno.dto.Aluno.AlunoRequest;
+import com.devlucasmart.aluno.dto.Aluno.AlunoResponse;
+import com.devlucasmart.aluno.dto.Aluno.AlunoUpdateRequest;
+import com.devlucasmart.aluno.dto.Aluno.AlunoUpdateResponse;
+import com.devlucasmart.aluno.dto.AvaliacaoFisica.AvaliacaoFisicaResponse;
 
 import java.util.List;
 
 public interface IAlunoService {
 
-    Aluno create(AlunoForm form);
+    AlunoResponse create(AlunoRequest request);
 
-    Aluno get(Long id);
+    AlunoResponse get(Long id);
 
-    List<AlunoForm> getAll();
+    List<AlunoResponse> getAll();
 
-    AlunoUpdateForm update(Long id, AlunoUpdateForm formUpdate);
+    List<AlunoAvaliacoesResponse> getAllAvaliacaoFisica(Long id);
+
+    AlunoUpdateResponse update(Long id, AlunoUpdateRequest requestUpdate);
 
     void delete(Long id);
 }
