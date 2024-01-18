@@ -15,7 +15,6 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,8 +27,8 @@ public class AlunoServiceImpl implements IAlunoService {
 
     @Override
     public AlunoResponse create(AlunoRequest alunoRequest) {
-        var alunoResponse = AlunoMapper.toResponse(alunoRequest);
-        var aluno = AlunoMapper.toDomain(alunoResponse);
+        var aluno = AlunoMapper.toDomain(alunoRequest);
+        var alunoResponse = AlunoMapper.toDtoResponse(aluno);
         repository.save(aluno);
         return alunoResponse;
     }
@@ -44,16 +43,15 @@ public class AlunoServiceImpl implements IAlunoService {
     @Override
     public List<AlunoResponse> getAll() {
         var alunos = repository.findAll();
-        var alunosList = new ArrayList<AlunoResponse>();
-        alunos.forEach(aluno -> alunosList.add(AlunoMapper.toDtoResponse(aluno)));
+        var alunosList = AlunoMapper.toResponseList(alunos);
         return alunosList;
     }
 
     @Override
     public List<AlunoAvaliacoesResponse> getAllAvaliacaoFisica(Long id) {
         var aluno = repository.getById(id);
-        var alunoResponse = AlunoAvaliacoesMapper.toDto(aluno);
-        return List.of(alunoResponse);
+        var alunoAvaliacaoResponse = AlunoAvaliacoesMapper.toDto(aluno);
+        return List.of(alunoAvaliacaoResponse);
     }
 
     @Override

@@ -1,16 +1,16 @@
 package com.devlucasmart.academia.service;
 
 import com.devlucasmart.academia.dto.Matricula.MatriculaRequest;
-import com.devlucasmart.academia.model.Matricula;
+import com.devlucasmart.academia.dto.Matricula.MatriculaResponse;
 
 import java.util.List;
 
 public interface IMatriculaService {
-    Matricula create(MatriculaRequest request);
+    MatriculaResponse create(MatriculaRequest request);
 
-    Matricula get(Long id);
+    MatriculaResponse getById(Long id);
 
-    List<Matricula> getAll();
+    List<MatriculaResponse> getAll();
 
     void delete(Long id);
 }

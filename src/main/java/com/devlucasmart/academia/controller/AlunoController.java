@@ -41,8 +41,8 @@ public class AlunoController {
     }
 
     @PostMapping
-    public AlunoResponse create(@Valid @RequestBody AlunoRequest request) {
-        return service.create(request);
+    public void create(@Valid @RequestBody AlunoRequest request) {
+        service.create(request);
     }
 
     @PutMapping("/{id}")

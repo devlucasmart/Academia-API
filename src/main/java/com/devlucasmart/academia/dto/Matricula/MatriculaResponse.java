@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MatriculaResponse {
+    private Long id;
     private Long alunoId;
 }

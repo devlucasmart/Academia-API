@@ -1,20 +1,20 @@
 package com.devlucasmart.academia.service;
 
 import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaRequest;
+import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaResponse;
 import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaUpdateRequest;
-import com.devlucasmart.academia.model.AvaliacaoFisica;
 
 import java.util.List;
 
 public interface IAvaliacaoFisicaService {
 
-    AvaliacaoFisica create(AvaliacaoFisicaRequest request);
+    AvaliacaoFisicaResponse create(AvaliacaoFisicaRequest request);
 
-    AvaliacaoFisica get(Long id);
+    AvaliacaoFisicaResponse get(Long id);
 
-    List<AvaliacaoFisica> getAll();
+    List<AvaliacaoFisicaResponse> getAll();
 
-    AvaliacaoFisica update(Long id, AvaliacaoFisicaUpdateRequest requestUpdate);
+    AvaliacaoFisicaResponse update(Long id, AvaliacaoFisicaUpdateRequest requestUpdate);
 
     void delete(Long id);
 }

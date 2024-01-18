@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AlunoAvaliacoesResponse {
+    private Long id;
     private String nome;
     private String cpf;
     private List<AvaliacaoFisicaResponse> avaliacoes = new ArrayList<>();
