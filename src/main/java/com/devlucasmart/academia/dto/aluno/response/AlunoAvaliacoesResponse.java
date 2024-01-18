@@ -1,6 +1,6 @@
-package com.devlucasmart.academia.dto.Aluno;
+package com.devlucasmart.academia.dto.aluno.response;
 
-import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaResponse;
+import com.devlucasmart.academia.dto.avaliacao.response.AvaliacaoFisicaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;

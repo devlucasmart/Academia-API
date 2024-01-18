@@ -27,7 +27,7 @@ public class AvaliacaoFisica implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;
     private LocalDateTime dataDaAvaliacao = LocalDateTime.now();

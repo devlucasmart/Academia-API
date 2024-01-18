@@ -1,6 +1,6 @@
 package com.devlucasmart.academia.predicate;
 
-import com.devlucasmart.academia.comum.Predicate.PredicateBase;
+import com.devlucasmart.academia.comum.predicate.PredicateBase;
 
 import static com.devlucasmart.academia.model.QAvaliacaoFisica.avaliacaoFisica;
 

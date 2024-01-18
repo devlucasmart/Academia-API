@@ -1,7 +1,7 @@
 package com.devlucasmart.academia.controller;
 
-import com.devlucasmart.academia.dto.Matricula.MatriculaRequest;
-import com.devlucasmart.academia.dto.Matricula.MatriculaResponse;
+import com.devlucasmart.academia.dto.matricula.request.MatriculaRequest;
+import com.devlucasmart.academia.dto.matricula.response.MatriculaResponse;
 import com.devlucasmart.academia.service.impl.MatriculaServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,9 +1,9 @@
 package com.devlucasmart.academia.controller;
 
-import com.devlucasmart.academia.dto.Aluno.AlunoAvaliacoesResponse;
-import com.devlucasmart.academia.dto.Aluno.AlunoRequest;
-import com.devlucasmart.academia.dto.Aluno.AlunoResponse;
-import com.devlucasmart.academia.dto.Aluno.AlunoUpdateRequest;
+import com.devlucasmart.academia.dto.aluno.response.AlunoAvaliacoesResponse;
+import com.devlucasmart.academia.dto.aluno.request.AlunoRequest;
+import com.devlucasmart.academia.dto.aluno.response.AlunoResponse;
+import com.devlucasmart.academia.dto.aluno.request.AlunoUpdateRequest;
 import com.devlucasmart.academia.service.impl.AlunoServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.devlucasmart.academia.comum.Predicate;
+package com.devlucasmart.academia.comum.predicate;
 
 import com.querydsl.core.BooleanBuilder;
 

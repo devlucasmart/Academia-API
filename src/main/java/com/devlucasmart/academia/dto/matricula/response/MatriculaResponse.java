@@ -1,4 +1,4 @@
-package com.devlucasmart.academia.dto.Matricula;
+package com.devlucasmart.academia.dto.matricula.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

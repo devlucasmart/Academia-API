@@ -1,4 +1,4 @@
-package com.devlucasmart.academia.dto.AvaliacaoFisica;
+package com.devlucasmart.academia.dto.avaliacao.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

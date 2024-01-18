@@ -1,4 +1,4 @@
-package com.devlucasmart.academia.dto.Aluno;
+package com.devlucasmart.academia.dto.aluno.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlunoUpdateResponse {
-    private Long id;
+public class AlunoUpdateRequest {
     private String nome;
     private String bairro;
     private LocalDate dataDeNascimento;

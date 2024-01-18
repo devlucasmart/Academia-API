@@ -1,4 +1,4 @@
-package com.devlucasmart.academia.dto.Aluno;
+package com.devlucasmart.academia.dto.aluno.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AlunoResponse {
+    private Long id;
     private String nome;
     private String cpf;
 }

@@ -1,12 +1,9 @@
 package com.devlucasmart.academia.service.impl;
 
-import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaRequest;
-import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaResponse;
-import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaUpdateRequest;
-import com.devlucasmart.academia.mappers.AlunoMapper;
-import com.devlucasmart.academia.mappers.AlunoUpdateMapper;
+import com.devlucasmart.academia.dto.avaliacao.request.AvaliacaoFisicaRequest;
+import com.devlucasmart.academia.dto.avaliacao.response.AvaliacaoFisicaResponse;
+import com.devlucasmart.academia.dto.avaliacao.request.AvaliacaoFisicaUpdateRequest;
 import com.devlucasmart.academia.mappers.AvaliacaoFisicaMapper;
-import com.devlucasmart.academia.mappers.AvaliacaoFisicaUpdateMapper;
 import com.devlucasmart.academia.repository.AlunoRepository;
 import com.devlucasmart.academia.repository.AvaliacaoFisicaRepository;
 import com.devlucasmart.academia.service.IAvaliacaoFisicaService;
@@ -23,18 +20,14 @@ import java.util.stream.Collectors;
 public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     private final AvaliacaoFisicaRepository repository;
     private final AlunoRepository alunoRepository;
-    private AvaliacaoFisicaMapper AvaliacaoFisicaMapper = Mappers.getMapper(AvaliacaoFisicaMapper.class);
-    private AvaliacaoFisicaUpdateMapper AvaliacaoFisicaUpdateMapper = Mappers.getMapper(AvaliacaoFisicaUpdateMapper.class);
-
-    private AlunoMapper AlunoMapper = Mappers.getMapper(AlunoMapper.class);
-    private AlunoUpdateMapper AlunoUpdateMapper = Mappers.getMapper(AlunoUpdateMapper.class);
+    private AvaliacaoFisicaMapper avaliacaoFisicaMapper = Mappers.getMapper(AvaliacaoFisicaMapper.class);
 
     @Override
     public AvaliacaoFisicaResponse create(AvaliacaoFisicaRequest request) {
         var aluno = alunoRepository.getById(request.getAlunoId());
-        var avaliacao = AvaliacaoFisicaMapper.toDomain(request);
+        var avaliacao = avaliacaoFisicaMapper.toDomain(request);
         avaliacao.setAluno(aluno);
-        var avaliacaoResponse = AvaliacaoFisicaMapper.toResponse(request);
+        var avaliacaoResponse = avaliacaoFisicaMapper.toResponse(request);
         repository.save(avaliacao);
         return avaliacaoResponse;
     }
@@ -42,7 +35,8 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     @Override
     public AvaliacaoFisicaResponse get(Long id) {
         var avaliacao = repository.getById(id);
-        var avaliacaoResponse = AvaliacaoFisicaMapper.toDtoResponse(avaliacao);
+        var avaliacaoResponse = avaliacaoFisicaMapper.toDtoResponse(avaliacao);
+        avaliacaoResponse.setId(avaliacao.getId());
         avaliacaoResponse.setAlunoId(avaliacao.getAluno().getId());
         return avaliacaoResponse;
     }
@@ -51,7 +45,8 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     public List<AvaliacaoFisicaResponse> getAll() {
         return repository.findAll().stream()
                 .map(avaliacaoFisica -> {
-                    var avaliacaoResponse = AvaliacaoFisicaMapper.toDtoResponse(avaliacaoFisica);
+                    var avaliacaoResponse = avaliacaoFisicaMapper.toDtoResponse(avaliacaoFisica);
+                    avaliacaoResponse.setId(avaliacaoFisica.getId());
                     avaliacaoResponse.setAlunoId(avaliacaoFisica.getAluno().getId());
                     return avaliacaoResponse;
                 })
@@ -59,11 +54,11 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     }
 
     @Override
-    public AvaliacaoFisicaResponse update(Long id, AvaliacaoFisicaUpdateRequest request) {
+    public void update(Long id, AvaliacaoFisicaUpdateRequest request) {
         var avaliacaoFisicaExistente = repository.findById(id).orElseThrow(() -> new RuntimeException("Avaliacao não existe"));
         BeanUtils.copyProperties(request, avaliacaoFisicaExistente);
-        var avaliacaoUpdate = repository.save(avaliacaoFisicaExistente);
-        return AvaliacaoFisicaMapper.toDtoResponse(avaliacaoUpdate);
+        repository.save(avaliacaoFisicaExistente);
+
     }
 
     @Override

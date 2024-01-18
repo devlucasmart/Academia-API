@@ -30,7 +30,6 @@ public class ExceptionHandlingController {
         return Arrays.asList(new MessageException(ex.getMessage()));
     }
 
-
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
     @ResponseBody
@@ -59,8 +58,9 @@ public class ExceptionHandlingController {
         Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
         return violations.stream()
                 .map(violation -> !ObjectUtils.isEmpty(ex.getMessage())
-                        ? new MessageException("O campo " + violation.getPropertyPath().toString() +
-                        " " + ex.getMessage())
+                        ? new MessageException("O campo " + violation.getPropertyPath().toString()
+                        + " " + ex.getMessage())
+
                         : new MessageException(violation.getPropertyPath().toString(),
                         "O campo " + violation.getPropertyPath().toString() + " " + violation.getMessage()))
                 .collect(Collectors.toList());

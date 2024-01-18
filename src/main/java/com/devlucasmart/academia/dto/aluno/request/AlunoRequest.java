@@ -1,4 +1,4 @@
-package com.devlucasmart.academia.dto.Aluno;
+package com.devlucasmart.academia.dto.aluno.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

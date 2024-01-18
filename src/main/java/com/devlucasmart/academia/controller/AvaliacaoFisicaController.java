@@ -1,10 +1,11 @@
 package com.devlucasmart.academia.controller;
 
-import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaRequest;
-import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaResponse;
-import com.devlucasmart.academia.dto.AvaliacaoFisica.AvaliacaoFisicaUpdateRequest;
+import com.devlucasmart.academia.dto.avaliacao.request.AvaliacaoFisicaRequest;
+import com.devlucasmart.academia.dto.avaliacao.response.AvaliacaoFisicaResponse;
+import com.devlucasmart.academia.dto.avaliacao.request.AvaliacaoFisicaUpdateRequest;
 import com.devlucasmart.academia.service.impl.AvaliacaoFisicaServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,12 +40,14 @@ public class AvaliacaoFisicaController {
     }
 
     @PutMapping("{id}")
-    public AvaliacaoFisicaResponse update(@PathVariable Long id, @RequestBody AvaliacaoFisicaUpdateRequest request) {
-        return service.update(id, request);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody AvaliacaoFisicaUpdateRequest request) {
+        service.update(id, request);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

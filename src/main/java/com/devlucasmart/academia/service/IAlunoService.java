@@ -1,10 +1,10 @@
 package com.devlucasmart.academia.service;
 
-import com.devlucasmart.academia.dto.Aluno.AlunoAvaliacoesResponse;
-import com.devlucasmart.academia.dto.Aluno.AlunoRequest;
-import com.devlucasmart.academia.dto.Aluno.AlunoResponse;
-import com.devlucasmart.academia.dto.Aluno.AlunoUpdateRequest;
-import com.devlucasmart.academia.dto.Aluno.AlunoUpdateResponse;
+import com.devlucasmart.academia.dto.aluno.response.AlunoAvaliacoesResponse;
+import com.devlucasmart.academia.dto.aluno.request.AlunoRequest;
+import com.devlucasmart.academia.dto.aluno.response.AlunoResponse;
+import com.devlucasmart.academia.dto.aluno.request.AlunoUpdateRequest;
+import com.devlucasmart.academia.dto.aluno.response.AlunoUpdateResponse;
 
 import java.util.List;
 
